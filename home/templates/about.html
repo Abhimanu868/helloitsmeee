@@ -1,0 +1,203 @@
+{% extends "index.html" %}
+{% load static %}
+{% block title %}About{% endblock title %}
+{% block content %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>About Me</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: "Segoe UI", sans-serif;
+      background-color: #0f172a;
+      color: #f1f5f9;
+    }
+
+    .about-section {
+      padding: 40px 20px;
+      max-width: 1100px;
+      margin: auto;
+    }
+
+    .about-section h2 {
+      font-size: 2rem;
+      color: #facc15;
+      margin-bottom: 20px;
+    }
+
+    .about-text {
+      background-color: #1e293b;
+      padding: 20px;
+      font-size: 20px;
+      display: flex;
+      border-radius: 10px;
+      margin-bottom: 40px;
+    }
+    .about-text img{
+        height: 100px;
+    }
+    .purple{
+        color: blueviolet;
+    }
+    .section-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 20px;
+    }
+
+    .box {
+      background-color: #1e293b;
+      border: 2px solid #facc15;
+      border-radius: 10px;
+      padding: 15px;
+      flex: 1 1 250px;
+      transition: transform 0.3s, box-shadow 0.3s;
+      text-align: center;
+    }
+
+    .box:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 0 15px #facc1580;
+    }
+
+    .box img {
+      width: 60px;
+      height: 60px;
+      object-fit: cover;
+      margin-bottom: 10px;
+      border-radius: 10px;
+    }
+
+    .box h4 {
+      margin: 10px 0 5px;
+      color: #facc15;
+    }
+
+    .box p {
+      color: #cbd5e1;
+      font-size: 0.95rem;
+    }
+
+    @media (max-width: 768px) {
+      .section-grid {
+        flex-direction: column;
+      }
+    }
+  </style>
+  <script src="https://cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/2.1.3/TweenMax.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/2.1.3/TimelineMax.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.13.0/ScrollTrigger.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.13.0/gsap.min.js"></script>
+
+</head>
+<body>
+
+  <section class="about-section">
+    <h2>About Me</h2>
+    <div class="about-text">
+        <img src= {% static "about.png" %} alt="">
+      <div>
+        I'm a <span class="purple">passionate web developer</span> with a creative mind and love for building <span class="purple">interactive and responsive web applications</span>. I enjoy working on both <span class="purple">frontend and backend technologies</span>, and I'm constantly learning new skills.
+      </div>
+    </div>
+
+    <!-- Skills -->
+    <h2>Skills</h2>
+    <div class="section-grid">
+      <div class="box">
+        <img src={% static "html.png" %} alt="HTML Icon">
+        <h4>HTML & CSS</h4>
+        <p>Semantic HTML, Flexbox, Grid, responsive design</p>
+      </div>
+      <div class="box">
+        <img src={% static "js.png" %} alt="JavaScript Icon">
+        <h4>JavaScript</h4>
+        <p>Modern JS, DOM manipulation,Anime JS and GSAP</p>
+      </div>
+      <div class="box">
+        <img src={% static "python.png" %} alt="Python Icon">
+        <h4>Python</h4>
+        <p>Basic Python, Django, Tkinter</p>
+      </div>
+      <div class="box">
+        <img src={% static "git.png" %} alt="GitHub Icon">
+        <h4>Git & GitHub</h4>
+        <p>Version control, Git commands, open-source</p>
+      </div>
+      <div class="box">
+        <img src={% static "canva.png" %} alt="GitHub Icon">
+        <h4>Canva</h4>
+        <p>Image editing, Video editing</p>
+      </div>
+    </div>
+
+    <!-- Projects -->
+    <h2 style="margin-top: 40px;">Projects</h2>
+    <div class="section-grid">
+      <div class="box">
+        <img src={% static "portfolio.png" %} alt="Portfolio">
+        <h4>Portfolio Website</h4>
+        <p>A personal site to showcase my skills, resume, and projects.</p>
+      </div>
+      <div class="box">
+        <img src= {% static "pizza.png" %} alt="Pizza Pie">
+        <h4>Pizza Pie</h4>
+        <p>Created a Front End of the Pizza Website.</p>
+      </div>
+      <div class="box">
+        <img src={% static "rock.png" %} alt="Rock Paper Scissors">
+        <h4>Multi Games Gui</h4>
+        <p>Created a single gui app for multiple games including Rock, Paper, Scissors and Hangman and Number Guessing.</p>
+      </div>
+      <div class="box">
+        <img src={% static "amazon.png" %} alt="Amazon">
+        <h4>Blog Platform</h4>
+        <p>Created a Front End of the Amazon Website.</p>
+      </div>
+    </div>
+     <h2 style="margin-top: 40px;">Content Creation</h2>
+     <div class="section-grid">
+      <div class="box">
+        <img src={% static "football (2).png" %} alt="Portfolio">
+        <h4>Football News</h4>
+        <p>A personal passion of creating content about spreading 
+          genuine football news to my audience</p>
+      </div>
+    </div>
+  </section>
+<script>
+  gsap.registerPlugin(ScrollTrigger);
+  gsap.utils.toArray('.box').forEach((box)=>{
+    gsap.from(box,{
+      scrollTrigger:{
+        trigger:box,
+        start:'top 50%',
+        toggleActions:'restart pause resume pause'
+      },
+      y:50,
+      opacity:0,
+      duration:1,
+      ease:'Power2.out'
+    })
+  });
+  const heading = document.querySelectorAll('h2');
+  const tl = gsap.timeline();
+
+tl.from(heading, {
+  y: 30,
+  opacity: 0,
+  duration: 1,
+  stagger: 0.3,
+  ease: "power2.out"
+});
+
+</script>
+
+</body>
+</html>
+
+{% endblock content %}

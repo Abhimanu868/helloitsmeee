@@ -1,0 +1,60 @@
+{% extends "index.html" %}
+{% load static %}
+{% block title %}Home{% endblock title %}
+{% block content %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Typed.js Demo</title>
+  <script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12"></script>
+  <style>
+    body {
+      background-color: rgb(0, 0, 33);
+      color: white;
+    }
+    .first {
+      display: flex;
+      justify-content: space-around;
+      margin: 80px 0px;
+    }
+    .first > div {
+      width: 30%;
+    }
+    .left {
+      font-size: 3rem;
+      margin: 100px 0px;
+    }
+    .right {
+      width: 80%;
+    }
+    .purple {
+      color: rgb(175, 110, 236);
+    }
+  </style>
+</head>
+<body>
+  <main>
+    <section class="first">
+      <div class="left">
+        Hi, My name is <span class="purple">Abhimanyu</span>
+        <div>and I am <span id="animate"></span></div>
+      </div>
+      <div class="right">
+        <img src={% static "image.png" %} alt="">
+      </div>
+    </section>
+  </main>
+
+  <script>
+    var typed = new Typed('#animate', {
+      strings: ['a <span class="purple">Web Developer</span>', 'a <span class="purple">Programmer</span>', 'a <span class="purple">Content Creater</span>'],
+      typeSpeed: 70,
+      backSpeed: 50,
+      loop: true
+    });
+  </script>
+</body>
+</html>
+{% endblock content %}

@@ -1,0 +1,173 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{% block title %}MyWebsite{% endblock %}</title>
+
+  <style>
+    /* Reset and base styles */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: Arial, sans-serif;
+      line-height: 1.6;
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+    }
+
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+
+    /* Navbar */
+    .navbar {
+      background-color: #222;
+      color: #fff;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1rem 2rem;
+      flex-wrap: wrap;
+    }
+
+    .navbar .logo {
+      display: flex;
+      align-items: center;
+    }
+
+    .logo img {
+      height: 70px;
+      width: 70px;
+      border-radius: 50%;
+      object-fit: cover;
+       border: 3px solid #f0a500;
+      box-shadow: 0 0 10px rgba(240, 165, 0, 0.6);
+      margin-right: 1rem;
+    }
+
+    .navbar ul {
+      list-style: none;
+      display: flex;
+      gap: 1.5rem;
+      align-items: center;
+    }
+
+    .navbar a {
+      color: #fff;
+      transition: color 0.3s ease;
+      font-size: 1.1rem;
+    }
+
+    .navbar a:hover {
+      color: #f0a500;
+      text-decoration: underline;
+    }
+
+    @media (max-width: 768px) {
+      .navbar {
+        flex-direction: column;
+        align-items: center;
+      }
+
+      .navbar ul {
+        flex-direction: column;
+        width: 100%;
+        margin-top: 1rem;
+        align-items: center;
+      }
+
+      .logo img {
+        height: 80px;
+        width: 80px;
+        margin: 0 auto;
+      }
+    }
+
+    /* Main Content */
+    main {
+      flex: 1;
+      padding: 2rem;
+      background-color: rgb(0, 0, 33);
+      color: white;
+    }
+
+    /* Footer */
+    .footer {
+      background-color: #222;
+      color: #ccc;
+      text-align: center;
+      padding: 2rem 1rem;
+    }
+
+    .footer a {
+      color: #f0a500;
+      margin: 0 0.5rem;
+    }
+
+    .footer a:hover {
+      text-decoration: underline;
+    }
+
+    .footer-content p {
+      margin-bottom: 0.5rem;
+    }
+    
+  </style>
+<script src="https://cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/2.1.3/TweenMax.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/2.1.3/TimelineMax.min.js"></script>
+
+  {% block extra_head %}{% endblock %}
+</head>
+<body>
+
+  <!-- Navbar -->
+  <nav class="navbar">
+    <div class="logo">
+      <img src="{% static 'IMG_20240920_211847.jpg' %}" alt="my-image">
+    </div>
+    <ul>
+      <li><a href="{% url 'home' %}">Home</a></li>
+      <li><a href="{% url 'about' %}">About</a></li>
+      <li><a href="{% url 'contact' %}">Contact</a></li>
+      <li><a href="{% url 'login' %}">Login</a></li>
+      <li><a href="{% url 'signup' %}">Signup</a></li>
+      <li><a href="{% url 'logout' %}">Logout</a></li>
+    </ul>
+  </nav>
+
+  <!-- Main Content -->
+  <main>
+    {% block content %}
+    
+    {% endblock %}
+  </main>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="footer-content">
+      <p>&copy; 2025 MyWebsite. All rights reserved.</p>
+      <div class="socials"> 
+        <a href="https://www.instagram.com/scorenews24/">Instagram</a>
+      </div>
+    </div>
+  </footer>
+<script>
+  const list = document.querySelectorAll('li');
+  const main = document.querySelector('main');
+  const t1 = new TimelineMax();
+  t1.fromTo(list,1.2,{opacity:0,x:30},{opacity:100,x:0})
+  .fromTo(main,1.6,{x:'100%'},{x:'0%',ease:Power2.easeInOut});
+</script>
+
+  {% block extra_scripts %}{% endblock %}
+</body>
+</html>
