@@ -1,0 +1,11 @@
+services:
+  - type: web
+    name: helloitsmeee
+    env: python
+    buildCommand: "pip install -r requirements.txt"
+    startCommand: "python manage.py migrate && python manage.py collectstatic --noinput && gunicorn hello.wsgi:application"
+    envVars:
+      - key: DJANGO_SETTINGS_MODULE
+        value: hello.settings
+      - key: PYTHON_VERSION
+        value: 3.11.4

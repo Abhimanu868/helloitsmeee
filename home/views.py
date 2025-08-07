@@ -4,7 +4,7 @@ from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
 from datetime import datetime
 from home.models import Contact
-
+from django.core.mail import send_mail
 @login_required(login_url='login')
 def home(request):
     return render(request, 'home.html')
@@ -22,7 +22,6 @@ def contact(request):
         des = request.POST.get('description')
         contact = Contact(name=name, email=email, phone=phone, des=des)
         contact.save()
-        return render(request,'message.html')
     return render(request, 'contact.html')
 
 def loginuser(request):
